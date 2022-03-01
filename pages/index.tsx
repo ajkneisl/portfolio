@@ -61,7 +61,7 @@ const Home = () => {
                     <div className="projects">
                         <div>
                             <h3>
-                                <Link href="https://unifey.ajkneisl.dev">
+                                <Link href="https://unifey.app">
                                     Unifey
                                 </Link>
                             </h3>
