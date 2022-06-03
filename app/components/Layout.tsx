@@ -6,7 +6,7 @@ type LayoutProps = {
     children: JSX.Element[] | JSX.Element;
 };
 
-const Main = styled.div`
+const Main = styled.main`
     animation: fadeIn;
     animation-duration: 1s;
     display: flex;
@@ -25,6 +25,12 @@ const Footer = styled.footer`
     height: 16px;
     position: absolute;
     width: 100%;
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `
 
 const Layout = ({ title, children }: LayoutProps) => {
@@ -38,12 +44,8 @@ const Layout = ({ title, children }: LayoutProps) => {
             <Main>{children}</Main>
 
             <Footer>
-                <div style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                }}>
-                    <p>AJ Kneisl ©{new Date().getFullYear()}</p>
+                <div>
+                    <p>aj kneisl ©{new Date().getFullYear()}, aj@ajkneisl.dev</p>
                 </div>
             </Footer>
         </>

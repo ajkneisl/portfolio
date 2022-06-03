@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
-    p, h1, h2, h3 {
+    p, h1, h2, h3, li {
         color: white;
         font-weight: 300;
     }

@@ -1,169 +1,244 @@
-import Link from "next/link";
-import styled from "styled-components";
-import Layout from "../app/components/Layout";
-import Logo from "../app/components/Logo";
+import { useState } from 'react'
+import styled from 'styled-components'
+import Layout from '../app/components/Layout'
 
-type ProjectArgs = {
-    title: string;
-    desc: string;
-    links: JSX.Element[];
-    icons: JSX.Element[] | JSX.Element;
-    index: number
-};
-
-type ProjectStyleArgs = {
-    duration: number
-}
-
-const Project = ({ title, desc, links, icons, index }: ProjectArgs) => {
-    const ProjectBody = styled.div<ProjectStyleArgs>`
-        animation: fadeIn;
-
-        ${({ duration }: ProjectStyleArgs) => `animation-duration: ${duration}s;` }
-
-        border-radius: 4px;
-        position: relative;
-        color: white;
-        background-color: #1d1b1c;
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-bottom: 16px;
-        min-height: 232px;
-
-        max-width: 256px;
-
-        p {
-            margin-bottom: 32px;
-        }
-
-        .project-footer {
-            position: absolute;
-            bottom: 0;
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            justify-content: space-between;
-
-            margin-bottom: 16px;
-            width: 224px;
-
-            .icons {
-                display: flex;
-                justify-content: space-evenly;
-                flex-direction: row;
-            }
-
-            .links {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-evenly;
-                list-decoration: none;
-            }
-        }
-    `;
-
-    return (
-        <ProjectBody
-            duration={index}
-        >
-            <h1>{title}</h1>
-            <p>{desc}</p>
-            <div className="project-footer">
-                <div className="icons">{icons}</div>
-                <div className="links">
-                    {links.map((link: JSX.Element, index: number) => {
-                        return index + 1 === links.length ? (
-                            <div key={index}>{link}</div>
-                        ) : (
-                            <div key={index}>{link} / </div>
-                        );
-                    })}
-                </div>
-            </div>
-        </ProjectBody>
-    );
-};
-
-const ProjectLists = styled.div`
+const PortfolioStyle = styled.main`
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    max-width: 256px;
-    min-width: 256px;
-    @media only screen and (min-width: 600px) {
-        max-width: 520px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
     }
 
-    @media only screen and (min-width: 830px) {
-        max-width: 816px;
+    li {
+        cursor: pointer;
+        font-size: 18px;
+        text-decoration: underline;
     }
-`;
 
-const Title = styled.div`
-    display: flex;
-    flex-direction: row;
+    #projects-view {
+        max-width: 240px;
+        min-width: 240px;
 
-    a {
-        margin-top: 38px;
-        margin-left: 4px;
+        max-height: 512px;
+        min-height: 512px;
+
+        overflow-y: scroll;
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+
+        &::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+    }
+
+    #projects-list {
+        max-width: 120px;
+        min-width: 120px;
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* When the browser is at least 600px and above */
+    @media screen and (min-width: 600px) {
+        flex-direction: row;
+        justify-content: stretch;
+        align-items: baseline;
     }
 `
 
-const Portfolio = () => {
+type Project = {
+    title: string
+    subtitle: string
+    body: JSX.Element
+    links: Link[]
+}
+
+type Link = {
+    name: string
+    url: string
+}
+
+const Discontinued = styled.span`
+    color: gray;
+`
+
+const projects = {
+    unifey: {
+        title: 'Unifey',
+        subtitle: 'Open-source social media website.',
+        body: (
+            <section>
+                <p>
+                    An open-sourced social-media website based off React and
+                    Ktor.
+                    <br />
+                    It works based on different types of entities. These include
+                    communities, users, and feeds.
+                </p>
+
+                <p>
+                    <b>Community</b>
+                    <br />A community is a group of users who are all entitled
+                    to a community specific feed.
+                </p>
+
+                <p>
+                    <b>Feed</b>
+                    <br />
+                    Each feed is an infinite scrolling list of posts, where
+                    users with select permissions are able to create posts with
+                    large amounts of text or images. This post is furthered
+                    through the ability for other users to upvote, downvote, or
+                    comment.
+                </p>
+
+                <p>
+                    <b>Users</b>
+                    <br />A user is an end-user's ability to interact with
+                    Unifey and other entities within. Each user profile has
+                    their own feed, which allows users to interact with other
+                    users. Users can also friend and direct message eachother.
+                </p>
+
+                <h3>
+                    <b>Backend</b>
+                </h3>
+                <p>
+                    The backend is based off Ktor, a Kotlin web framework. It
+                    utilizes REST and websockets for live notifications and
+                    direct messaging. The backend is hosted through AWS, where
+                    GitHub actions directly uploads it to an ECR repository and
+                    deploys it on an ECS cluster.
+                </p>
+
+                <h3>
+                    <b>Frontend</b>
+                </h3>
+                <p>
+                    The frontend is based off a React-Redux framework. This is
+                    hosted through AWS Amplify, where it is automatically built
+                    and served.
+                </p>
+            </section>
+        ),
+        links: [
+            { name: 'homepage', url: 'https://unifey.app' },
+            { name: 'github', url: 'https://github.com/unifey-net' },
+        ],
+    },
+    buta: {
+        title: 'Buta',
+        subtitle: 'Open-source Discord bot, focused on moderation.',
+        body: <section></section>,
+        links: []
+    },
+    printer: {
+        title: 'printer',
+        subtitle: 'A way to communicate with a receipt printer.',
+        body: (
+            <section>
+                <p>
+                    This is a combination of two different pieces of software,
+                    combined to control a receipt printer through REST
+                    endpoints.
+                </p>
+                <h3>
+                    <b>Controller</b>
+                </h3>
+                <p>
+                    The controller is Kotlin code that goes onto a Raspberry Pi.
+                    This code is constatly watching a MongoDB database for new
+                    entries. When there is a new entry, it serializes the entry
+                    into a readable print request, then prints it.
+                </p>
+
+                <h3>
+                    <b>Service</b>
+                </h3>
+                <p>
+                    The service controlling what goes into the MongoDB is a Ktor
+                    micro-service created using Kotlin. Through REST endpoints,
+                    prints can be queued into the database, which eventually is
+                    received by the controller.
+                </p>
+            </section>
+        ),
+        links: []
+    },
+}
+
+const ProjectLi = styled.li<{ active: boolean }>`
+    ${({ active }) =>
+        active ? '&::before { content: "> "; text-decoration: none; }' : ''}
+`
+
+const NewPortfolio = () => {
+    const [projectView, setProjectView] = useState<Project>()
+
+    const presentProjectView = () => {
+        if (projectView) {
+            const { title, subtitle, body, links } = projectView!!
+
+            return (
+                <article>
+                    <h2>{title}</h2>
+                    {links.length > 0 && (
+                        <p>
+                            {links.map(({ url, name }, index) => (
+                                <>
+                                    <a href={url} target="_blank">
+                                        {name}
+                                    </a>
+                                    {index - 1 !== links.length && <>, </>}
+                                </>
+                            ))}
+                        </p>
+                    )}
+                    <h3>{subtitle}</h3>
+
+                    {body}
+                </article>
+            )
+        } else return <></>
+    }
+
     return (
         <Layout>
-            <Title>
-                <h1>projects</h1>
-                <Link href="/">back</Link>
-            </Title>
-            <ProjectLists>
-                <Project
-                    index={0}
-                    title="Unifey"
-                    desc="An open-source social media platformed focused on privacy."
-                    links={[
-                        <a href="https://github.com/unifey-net">GitHub</a>,
-                        <a href="https://unifey.app">Unifey</a>,
-                    ]}
-                    icons={[<Logo name={"react"} />, <Logo name={"kotlin"} />]}
-                />
-
-                <Project
-                    index={1}
-                    title="Buta"
-                    desc="A bot for the chatting platform Discord. Provides a elegant user experience with it's integrated web panel."
-                    links={[
-                        <a href="https://github.com/shoganeko/buta">GitHub</a>,
-                    ]}
-                    icons={[<Logo name={"react"} />, <Logo name={"kotlin"} />]}
-                />
-
-                <Project
-                    index={2}
-                    title="SpotKey"
-                    desc="An open-source way to add short-cuts onto Spotify."
-                    icons={[<Logo name={"kotlin"} />]}
-                    links={[
-                        <a href="https://github.com/shoganeko/spotkey">
-                            GitHub
-                        </a>,
-                    ]}
-                />
-
-                <Project
-                    index={3}
-                    title="Portfolio"
-                    desc="This portfolio. Made in Next.js and hosted using Vercel."
-                    icons={[<Logo name={"react"} />]}
-                    links={[
-                        <a href="https://github.com/shoganeko/portfolio">
-                            GitHub
-                        </a>,
-                    ]}
-                />
-            </ProjectLists>
+            <PortfolioStyle>
+                <section id="projects-list">
+                    <h2>Projects</h2>
+                    <a href="/">go back</a>
+                    <ul>
+                        {Object.keys(projects).map((key) => (
+                            <ProjectLi
+                                active={
+                                    projectView?.title &&
+                                    projectView.title.toLowerCase() ===
+                                        key.toLowerCase()
+                                }
+                                onClick={() => setProjectView(projects[key])}
+                            >
+                                {key}
+                            </ProjectLi>
+                        ))}
+                    </ul>
+                </section>
+                <section id="projects-view">
+                    {projectView ? (
+                        presentProjectView()
+                    ) : (
+                        <p>Please select a project.</p>
+                    )}
+                </section>
+            </PortfolioStyle>
         </Layout>
-    );
-};
+    )
+}
 
-export default Portfolio;
+export default NewPortfolio
