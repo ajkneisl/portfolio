@@ -1,15 +1,10 @@
 import Layout from "../app/components/Layout";
 import styled from "styled-components";
 import Link from "next/link";
+import Breadcrumbs from "../app/components/Breadcrumbs";
 
-const Title = styled.div`
-    display: flex;
-    flex-direction: row;
-
-    a {
-        margin-top: 38px;
-        margin-left: 4px;
-    }
+const Title = styled.h1`
+    margin-bottom: 48px;
 `;
 
 const Links = styled.div`
@@ -21,12 +16,11 @@ const Links = styled.div`
 const Contact = () => {
     return (
         <Layout>
-            <Title>
-                <h1>contact</h1>
-                <Link href="/">back</Link>
-            </Title>
+            <Breadcrumbs/>
+            <Title>contact</Title>
+
             <Links>
-                <Link href="mailto:aj@ajkneisl.dev">aj@ajkneisl.dev</Link>
+                <Link href="mailto:aj@ajkneisl.dev">email: aj@ajkneisl.dev</Link>
                 <Link href="https://github.com/shoganeko">github</Link>
             </Links>
         </Layout>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import Breadcrumbs from '../app/components/Breadcrumbs'
 import Layout from '../app/components/Layout'
 
 const PortfolioStyle = styled.main`
@@ -21,6 +22,10 @@ const PortfolioStyle = styled.main`
     }
 
     #projects-view {
+        h3, p {
+            margin-bottom: 12px;
+        }
+
         max-width: 240px;
         min-width: 240px;
 
@@ -42,6 +47,10 @@ const PortfolioStyle = styled.main`
 
         justify-content: center;
         align-items: center;
+    }
+
+    #projects-title {
+        margin-bottom: 24px;
     }
 
     /* When the browser is at least 600px and above */
@@ -212,8 +221,10 @@ const NewPortfolio = () => {
         <Layout>
             <PortfolioStyle>
                 <section id="projects-list">
+                    <div id="projects-title">
                     <h2>Projects</h2>
-                    <a href="/">go back</a>
+                    <Breadcrumbs/>
+                    </div>
                     <ul>
                         {Object.keys(projects).map((key) => (
                             <ProjectLi

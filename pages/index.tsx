@@ -18,8 +18,6 @@ const HomeStyle = styled.div`
     .title {
         font-size: 64px;
         font-family: 'Montserrat', sans-serif;
-
-        margin-bottom: -16px;
     }
 `
 
@@ -29,13 +27,14 @@ const Home = () => {
             <HomeStyle>
                 <section>
                     <h1 className="title">aj kneisl</h1>
-                    <p>fullstack highschool developer.<br/>experienced in kotlin, react (+ js), & java.</p>
+                    <p>fullstack highschool developer.<br/>experienced in jvm languages and javascript.</p>
                 </section>
 
                 <section>
                     <Navigation>
                         <Link href="/portfolio">portfolio</Link>
                         <Link href="/contact">contact</Link>
+                        <Link href="/photography">photography</Link>
                     </Navigation>
                 </section>
             </HomeStyle>
