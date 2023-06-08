@@ -34,7 +34,6 @@ const Home = () => {
                     <Navigation>
                         <Link href="/portfolio">portfolio</Link>
                         <Link href="/contact">contact</Link>
-                        <Link href="/photography">photography</Link>
                     </Navigation>
                 </section>
             </HomeStyle>
