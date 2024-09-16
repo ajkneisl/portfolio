@@ -26,15 +26,7 @@ const Home = () => {
         <Layout>
             <HomeStyle>
                 <section>
-                    <h1 className="title">aj kneisl</h1>
-                    <p>fullstack highschool developer.<br/>experienced in jvm languages and javascript.</p>
-                </section>
-
-                <section>
-                    <Navigation>
-                        <Link href="/portfolio">portfolio</Link>
-                        <Link href="/contact">contact</Link>
-                    </Navigation>
+                    <h1 className="title">hello!</h1>
                 </section>
             </HomeStyle>
         </Layout>
