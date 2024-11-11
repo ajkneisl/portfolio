@@ -5,7 +5,7 @@ type LogoProps = {
 }
 
 const Logo = ({ name }: LogoProps) => {
-    return <Image src={`/logos/${name}.png`} width={24} height={24}/>;
+    return <Image alt={"LOGO!"} src={`/logos/${name}.png`} width={24} height={24}/>;
 };
 
 export default Logo;
