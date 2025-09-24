@@ -7,7 +7,7 @@ export default function Header() {
         {/* Projects */}
         <div>
             <ul className="menu menu-horizontal px-1">
-                <li><a href="/aj_resume_sep_15.pdf" target="_blank">resume</a></li>
+                <li><a href="/resume.pdf" target="_blank">resume</a></li>
             </ul>
         </div>
 

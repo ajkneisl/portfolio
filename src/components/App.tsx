@@ -20,7 +20,7 @@ export default function App() {
                                        className="flex flex-col justify-center items-center w-full max-w-screen m-4 gap-2">
                                        <h2 className="text-3xl font-light">AJ Kneisl</h2>
                                        <p className="break-all">junior at the university of minnesota, studying computer science :) <br />
-                                           take a look at <a className="underline" href="/aj_resume_sep_15.pdf"
+                                           take a look at <a className="underline" href="/resume.pdf"
                                                              target={'_blank'}>my resume</a>.</p>
                                    </div>
 
