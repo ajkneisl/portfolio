@@ -1,65 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
-
-const projects = [
-    {
-        year: '2025',
-        title: 'Burrow',
-        subtitle: 'A study-group finding app built for the University of Minnesota.',
-        tech: ['React', 'Kotlin', 'PostgreSQL']
-    },
-    {
-        year: '2024 — 2025',
-        title: 'Bulletin',
-        subtitle: 'A customizable photo-board, leveraging photo compression to create a smooth experience.',
-        tech: ['React', 'Kotlin']
-    },
-    {
-        year: '2023',
-        title: 'DECAfe',
-        subtitle: 'Online ordering demo for a nationally qualifying DECA project.',
-        tech: ['Kotlin / Java + Ktor', 'React + Tailwind'],
-        githubLink: 'https://github.com/ajkneisl/decafe-website'
-    },
-    {
-        year: '2022',
-        title: 'printPI',
-        subtitle: 'A remote receipt printer software, allowing for secure & remote printing anywhere.',
-        tech: ['Java / Kotlin', 'MongoDB'],
-        githubLink: 'https://github.com/ajkneisl/printer-service'
-    },
-    {
-        year: '2020 — 2022',
-        title: 'Unifey',
-        subtitle: 'Fully fledged forum and live chat based social media site, variably scaled using AWS.',
-        tech: ['Kotlin / Java + Ktor', 'React + Tailwind', 'AWS, MySQL'],
-        githubLink: 'https://github.com/unifey-net'
-    },
-    {
-        year: '2019',
-        title: 'SpotKey',
-        subtitle: 'A computer-wide Spotify hot-key manager, back when they didn\'t work as well.',
-        tech: ['Java', 'JavaFX'],
-        githubLink: 'https://github.com/ajkneisl/spotkey'
-    }
-]
-
-// Scroll-in animation
-function useInView(ref: React.RefObject<HTMLDivElement>) {
-    const [isVisible, setIsVisible] = useState(false)
-    useEffect(() => {
-        const el = ref.current
-        if (!el) return
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) setIsVisible(true)
-            },
-            { threshold: 0.1 }
-        )
-        observer.observe(el)
-        return () => observer.disconnect()
-    }, [ref])
-    return isVisible
-}
+import React, { useRef } from 'react'
+import useInView from './useInView'
+import { projects } from './timeline.api'
 
 export default function Timeline() {
     return (
@@ -80,14 +21,24 @@ export default function Timeline() {
                     ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
                                 >
                                     {/* Project image */}
-                                    <img
-                                        src={`https://placehold.co/600x200?text=${proj.title}`}
-                                        alt={proj.title}
-                                        className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
-                                    />
+                                    <div className="relative">
+                                        <img
+                                            src={proj.backgroundImage ? proj.backgroundImage : `https://placehold.co/600x200?text=${proj.title}`}
+                                            alt={proj.title}
+                                            className={`w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105 ${proj.backgroundStyle}`}
+                                        />
+
+                                        {proj.backgroundMaintainText && (
+                                            <img
+                                                src={`https://placehold.co/600x200/transparent/999999?text=${proj.title}`}
+                                                alt={proj.title}
+                                                className="absolute inset-0 w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105 z-10 pointer-events-none"
+                                            />
+                                        )}
+                                    </div>
 
                                     {/* Slide-in info on hover */}
-                                    <div className="absolute top-0 right-0 w-1/2 h-full bg-white px-4 py-3 flex flex-col justify-center
+                                    <div className="z-20 absolute top-0 right-0 w-1/2 h-full bg-white px-4 py-3 flex flex-col justify-center
                     opacity-0 translate-x-full group-hover:opacity-100 group-hover:translate-x-0
                     transition-all duration-300 ease-in-out border-l border-neutral-300 pointer-events-none">
                                         <p className="text-md font-semibold mb-1">{proj.title}</p>
@@ -100,12 +51,28 @@ export default function Timeline() {
                                         </div>
                                     </div>
 
+                                    {/* Website link icon */}
+                                    {proj.link && (
+                                        <a
+                                            href={proj.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="cursor-pointer bg-white p-1 rounded-xl absolute top-3 right-12 z-20 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110"
+                                        >
+                                            <img
+                                                src="/link.svg"
+                                                alt="External Link"
+                                                className="icon-link w-6 h-6 opacity-80 hover:opacity-100"
+                                            />
+                                        </a>
+                                    )}
+
                                     {/* GitHub icon */}
                                     <a
                                         href={proj.githubLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="absolute top-3 right-3 z-20 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110"
+                                        className="cursor-pointer bg-white p-1 rounded-xl absolute top-3 right-3 z-20 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110"
                                     >
                                         <img
                                             src="/github.svg"

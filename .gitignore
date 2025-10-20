@@ -39,3 +39,5 @@ yarn-error.log*
 Persona.yml
 
 pnpm-lock.yaml
+Personal.yml
+.idea

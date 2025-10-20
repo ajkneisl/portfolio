@@ -1,7 +1,7 @@
 export default function Header() {
     return <div className="navbar justify-center gap-8 bg-base-100 shadow-sm">
         <div className="">
-            <a className="text-xl font-semibold noto-sans" href="/">AJ Kneisl</a>
+            <a className="text-xl font-semibold noto-sans" href="/public">AJ Kneisl</a>
         </div>
 
         {/* Projects */}

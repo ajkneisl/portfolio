@@ -1,7 +1,7 @@
-import Footer from './Footer'
-import Header from './Header'
+import Footer from '../features/layout/Footer'
+import Header from '../features/layout/Header'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import Timeline from './Timeline'
+import Timeline from '../features/timeline/Timeline'
 
 /**
  * main app
@@ -19,7 +19,8 @@ export default function App() {
                                    <div
                                        className="flex flex-col justify-center items-center w-full max-w-screen m-4 gap-2">
                                        <h2 className="text-3xl font-light">AJ Kneisl</h2>
-                                       <p className="break-all">junior at the university of minnesota, studying computer science :) <br />
+                                       <p className="break-all">junior at the university of minnesota, studying computer
+                                           science :) <br />
                                            take a look at <a className="underline" href="/resume.pdf"
                                                              target={'_blank'}>my resume</a>.</p>
                                    </div>
