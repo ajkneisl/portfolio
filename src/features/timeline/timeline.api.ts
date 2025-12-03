@@ -1,4 +1,30 @@
-import { Project } from './timeline.types'
+import { Project, Experience } from './timeline.types'
+
+export const experiences: Experience[] = [
+    {
+        year: 'Oct 2025 — Present',
+        title: 'IT Help Desk',
+        company: 'University of Minnesota',
+        description: 'Provide technical support to students and faculty, troubleshooting hardware, software, and network connectivity issues across Windows, macOS, and Linux.',
+        tech: ['Windows', 'macOS', 'Linux', 'Active Directory', 'TDX'],
+        icon: '/umn-logo.svg'
+    },
+    {
+        year: 'Jan 2025 — Present',
+        title: 'CS Undergraduate Teaching Assistant',
+        company: 'University of Minnesota',
+        description: 'Facilitate weekly lab sessions for 30+ students, providing hands-on guidance with data structures, algorithms, and debugging techniques.',
+        tech: ['Python', 'Java', 'Teaching', 'Grading'],
+        icon: '/umn-logo.svg'
+    },
+    {
+        year: 'Sept 2022 — Present',
+        title: 'Fullstack Developer & System Administrator',
+        company: 'Freelance Work',
+        description: 'Deployed script-sharing marketplace scaling to 1,000+ users with 99.9% uptime. Designed responsive forms improving completion rates by 35%.',
+        tech: ['TypeScript', 'Jetty', 'RESTful API', 'System Administration']
+    }
+]
 
 export const projects: Project[] = [
     {
@@ -7,7 +33,7 @@ export const projects: Project[] = [
         subtitle: 'A study-group finding app built for the University of Minnesota in Social Coding.',
         tech: ['React', 'Kotlin', 'PostgreSQL'],
         githubLink: 'https://github.com/ajkneisl/burrow',
-        backgroundImage: '/projects/burrow.png',
+        icon: '/projects/burrow.png',
         link: 'https://umn.app'
     },
     {
@@ -32,8 +58,7 @@ export const projects: Project[] = [
         subtitle: 'Online ordering demo for a nationally qualifying DECA project.',
         tech: ['Kotlin / Java + Ktor', 'React + Tailwind'],
         githubLink: 'https://github.com/ajkneisl/decafe-website',
-        backgroundStyle: "object-scale-down",
-        backgroundImage: "/projects/decafe.png"
+        icon: '/projects/decafe.png'
     },
     {
         year: '2022',
@@ -48,9 +73,7 @@ export const projects: Project[] = [
         subtitle: 'Fully fledged forum and live chat based social media site, variably scaled using AWS.',
         tech: ['Kotlin / Java + Ktor', 'React + Tailwind', 'AWS, MySQL'],
         githubLink: 'https://github.com/unifey-net',
-        backgroundImage: "/projects/unifey.jpeg",
-        backgroundStyle: "object-top",
-        backgroundMaintainText: true
+        icon: '/projects/unifey.jpeg'
     },
     {
         year: '2019',
