@@ -10,14 +10,6 @@ export const experiences: Experience[] = [
         icon: '/umn-logo.svg'
     },
     {
-        year: 'Jan 2025 — Present',
-        title: 'CS Undergraduate Teaching Assistant',
-        company: 'University of Minnesota',
-        description: 'Facilitate weekly lab sessions for 30+ students, providing hands-on guidance with data structures, algorithms, and debugging techniques.',
-        tech: ['Python', 'Java', 'Teaching', 'Grading'],
-        icon: '/umn-logo.svg'
-    },
-    {
         year: 'Sept 2022 — Present',
         title: 'Fullstack Developer & System Administrator',
         company: 'Freelance Work',
@@ -28,10 +20,10 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
     {
-        year: '2025',
+        year: '2025 — Present',
         title: 'Burrow',
         subtitle: 'A study-group finding app built for the University of Minnesota in Social Coding.',
-        tech: ['React', 'Kotlin', 'PostgreSQL'],
+        tech: ['Typescript/React', 'Kotlin/Ktor', 'PostgreSQL'],
         githubLink: 'https://github.com/ajkneisl/burrow',
         icon: '/projects/burrow.png',
         link: 'https://umn.app'
