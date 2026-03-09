@@ -22,7 +22,7 @@ export const experiences: Experience[] = [
         title: 'Fullstack Developer & System Administrator',
         company: 'Freelance Work',
         description: 'Deployed script-sharing marketplace scaling to 1,000+ users with 99.9% uptime. Implemented automatic payout systems through crypto and PayPal. Designed responsive mortgage application forms improving completion rates by 35% over previous solutions.',
-        tech: ['TypeScript', 'Jetty', 'RESTful API', 'System Administration']
+        tech: ['React', 'Jetty', 'Linux', 'System Administration', 'Docker', 'AWS']
     }
 ]
 
