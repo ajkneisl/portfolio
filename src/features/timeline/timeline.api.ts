@@ -6,7 +6,7 @@ export const experiences: Experience[] = [
         title: 'Software Developer Intern',
         company: 'RBC Minneapolis',
         description: 'Incoming software developer intern at RBC Minneapolis.',
-        tech: [],
+        tech: ['Java', 'Web'],
         icon: '/rbc.svg'
     },
     {
