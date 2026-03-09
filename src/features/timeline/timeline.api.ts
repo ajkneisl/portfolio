@@ -2,6 +2,14 @@ import { Project, Experience } from './timeline.types'
 
 export const experiences: Experience[] = [
     {
+        year: 'Incoming June — Aug 2026',
+        title: 'Software Developer Intern',
+        company: 'RBC Minneapolis',
+        description: 'Incoming software developer intern at RBC Minneapolis.',
+        tech: [],
+        icon: '/rbc.svg'
+    },
+    {
         year: 'Oct 2025 — Present',
         title: 'IT Help Desk',
         company: 'University of Minnesota',
@@ -13,7 +21,7 @@ export const experiences: Experience[] = [
         year: 'Sept 2022 — Present',
         title: 'Fullstack Developer & System Administrator',
         company: 'Freelance Work',
-        description: 'Deployed script-sharing marketplace scaling to 1,000+ users with 99.9% uptime. Designed responsive forms improving completion rates by 35%.',
+        description: 'Deployed script-sharing marketplace scaling to 1,000+ users with 99.9% uptime. Implemented automatic payout systems through crypto and PayPal. Designed responsive mortgage application forms improving completion rates by 35% over previous solutions.',
         tech: ['TypeScript', 'Jetty', 'RESTful API', 'System Administration']
     }
 ]
@@ -22,11 +30,21 @@ export const projects: Project[] = [
     {
         year: '2025 — Present',
         title: 'Burrow',
-        subtitle: 'A study-group finding app built for the University of Minnesota in Social Coding.',
-        tech: ['Typescript/React', 'Kotlin/Ktor', 'PostgreSQL'],
+        subtitle: 'A study-group finding app built for the University of Minnesota.',
+        tech: ['Typescript/React', 'React Native', 'Kotlin/Ktor', 'PostgreSQL'],
         githubLink: 'https://github.com/ajkneisl/burrow',
-        icon: '/projects/burrow.png',
-        link: 'https://umn.app'
+        icon: '/projects/burrow.webp',
+        link: 'https://umn.app',
+        appStoreLink: 'https://apps.apple.com/us/app/burrow-at-umn/id6757548307'
+    },
+    {
+
+        year: '2025',
+        title: 'Echoes',
+        subtitle: 'Share your voices and become interconnected within your community. Top 5 Hackathon entry.',
+        tech: ['Typescript/React Native', 'Kotlin/Ktor', 'PostgreSQL'],
+        githubLink: 'https://github.com/ajkneisl/echoes',
+        icon: '/projects/echoes.webp'
     },
     {
         year: '2025',
@@ -50,7 +68,7 @@ export const projects: Project[] = [
         subtitle: 'Online ordering demo for a nationally qualifying DECA project.',
         tech: ['Kotlin / Java + Ktor', 'React + Tailwind'],
         githubLink: 'https://github.com/ajkneisl/decafe-website',
-        icon: '/projects/decafe.png'
+        icon: '/projects/decafe.webp'
     },
     {
         year: '2022',
@@ -65,7 +83,7 @@ export const projects: Project[] = [
         subtitle: 'Fully fledged forum and live chat based social media site, variably scaled using AWS.',
         tech: ['Kotlin / Java + Ktor', 'React + Tailwind', 'AWS, MySQL'],
         githubLink: 'https://github.com/unifey-net',
-        icon: '/projects/unifey.jpeg'
+        icon: '/projects/unifey.webp'
     },
     {
         year: '2019',

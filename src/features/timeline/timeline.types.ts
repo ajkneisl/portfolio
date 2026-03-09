@@ -16,7 +16,8 @@ export type Project = {
     tech: string[],
     icon?: string,
     githubLink?: string,
-    link?: string
+    link?: string,
+    appStoreLink?: string
 }
 
 /**
