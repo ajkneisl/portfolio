@@ -29,4 +29,6 @@ jobs:
                         cd /opt/docker/portfolio
                         git pull origin main
                         docker build -t portfolio:1.0.0 .
+                        docker stop portfolio || true
+                        docker rm portfolio || true
                         docker compose -f /opt/docker/Personal.yml up -d portfolio
