@@ -26,9 +26,9 @@ jobs:
                     username: ${{ secrets.SERVER_USER }}
                     key: ${{ secrets.SERVER_SSH_KEY }}
                     script: |
-                        cd /opt/docker/portfolio
+                        cd /opt/docker/portfolio/portfolio
                         git pull origin main
                         docker build -t portfolio:1.0.0 .
                         docker stop portfolio || true
                         docker rm portfolio || true
-                        docker compose -f /opt/docker/Personal.yml up -d portfolio
+                        docker compose -f /opt/docker/portfolio/Personal.yml up -d portfolio
