@@ -10,10 +10,18 @@ export const experiences: Experience[] = [
         icon: '/rbc.svg'
     },
     {
+        year: 'Jan 2026 — Present',
+        title: 'Undergraduate Teaching Assistant',
+        company: 'University of Minnesota CSE',
+        description: 'Undergraduate teaching assistant at the University of Minnesota College of Science and Engineering. Lead lab sections, hold office hours, and grade student coursework.',
+        tech: ['Java', 'Git', 'Linux', 'Gradescope'],
+        icon: '/umn-cse.png'
+    },
+    {
         year: 'Oct 2025 — Present',
-        title: 'IT Help Desk',
-        company: 'University of Minnesota',
-        description: 'Provide technical support to students and faculty, troubleshooting hardware, software, and network connectivity issues across Windows, macOS, and Linux.',
+        title: 'Student Lead',
+        company: 'University of Minnesota OIT',
+        description: 'Oversee student workers at the help desk, scheduling shifts, training 1new hires, and serving as an escalation point for complex tickets while maintaining day-to-day support coverage.',
         tech: ['Windows', 'macOS', 'Linux', 'Active Directory', 'TDX'],
         icon: '/umn-logo.svg'
     },
@@ -38,6 +46,13 @@ export const projects: Project[] = [
         appStoreLink: 'https://apps.apple.com/us/app/burrow-at-umn/id6757548307'
     },
     {
+        year: '2026',
+        title: 'Allersight',
+        subtitle: 'Detects allergens in food for businesses and consumers. Top 10 Hackathon entry.',
+        tech: ['Typescript/React', 'React Native', 'PostgreSQL', 'OpenCV', 'Python', 'Flask'],
+        icon: '/projects/allersight.svg'
+    },
+    {
 
         year: '2025',
         title: 'Echoes',
@@ -60,7 +75,8 @@ export const projects: Project[] = [
         subtitle: 'A customizable photo-board, leveraging photo compression to create a smooth experience.',
         tech: ['React', 'Kotlin'],
         githubLink: 'https://github.com/ajkneisl/bulletin',
-        link: 'https://ajkneisl.photos'
+        link: 'https://ajkneisl.photos',
+        icon: '/projects/bulletin.svg'
     },
     {
         year: '2023',
