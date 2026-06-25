@@ -2,11 +2,11 @@ import { Project, Experience } from './timeline.types'
 
 export const experiences: Experience[] = [
     {
-        year: 'Incoming June — Aug 2026',
+        year: 'June — Aug 2026',
         title: 'Software Developer Intern',
         company: 'RBC Minneapolis',
-        description: 'Incoming software developer intern at RBC Minneapolis.',
-        tech: ['Java', 'Web'],
+        description: 'Worked on Premium Savings, a product handling over $7.5 billion in assets within an agile workspace.',
+        tech: ['Java', 'Backend'],
         icon: '/rbc.svg'
     },
     {
