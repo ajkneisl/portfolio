@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
         year: 'Oct 2025 — Present',
         title: 'Student Lead',
         company: 'University of Minnesota OIT',
-        description: 'Oversee student workers at the help desk, scheduling shifts, training 1new hires, and serving as an escalation point for complex tickets while maintaining day-to-day support coverage.',
+        description: 'Oversee student workers at the help desk, scheduling shifts, training new hires, and serving as an escalation point for complex tickets while maintaining day-to-day support coverage.',
         tech: ['Windows', 'macOS', 'Linux', 'Active Directory', 'TDX'],
         icon: '/umn-logo.svg'
     },
