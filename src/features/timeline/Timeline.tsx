@@ -148,15 +148,17 @@ export default function Timeline() {
                                                  className="w-4 h-4 sm:w-5 sm:h-5 opacity-70" />
                                         </a>
                                     )}
-                                    <a
-                                        href={proj.githubLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="p-1.5 sm:p-2 hover:bg-neutral-200 rounded transition-colors cursor-pointer"
-                                    >
-                                        <img src="/github.svg" alt="GitHub"
-                                             className="w-4 h-4 sm:w-5 sm:h-5 opacity-70" />
-                                    </a>
+                                    {proj.githubLink && (
+                                        <a
+                                            href={proj.githubLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="p-1.5 sm:p-2 hover:bg-neutral-200 rounded transition-colors cursor-pointer"
+                                        >
+                                            <img src="/github.svg" alt="GitHub"
+                                                 className="w-4 h-4 sm:w-5 sm:h-5 opacity-70" />
+                                        </a>
+                                    )}
                                     <span className="text-xs text-neutral-500 hidden sm:inline">{proj.year}</span>
                                 </div>
                             </div>
