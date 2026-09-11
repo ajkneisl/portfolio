@@ -33,12 +33,5 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
-
-Persona.yml
-
-pnpm-lock.yaml
 Personal.yml
 .idea
-bun.lock

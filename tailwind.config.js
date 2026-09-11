@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
-        "./index.html",
-        "./src/**/*.{js,ts,jsx,tsx}",
+        './index.html',
+        './src/**/*.{js,ts,jsx,tsx}'
     ],
     theme: {
-        extend: {},
+        extend: {}
     },
-    plugins: [require("daisyui"), require("tailwind-scrollbar")],
+    plugins: [require('daisyui'), require('tailwind-scrollbar')],
     daisyui: {
-        themes: ["light"]
+        themes: ['light']
     }
 }
