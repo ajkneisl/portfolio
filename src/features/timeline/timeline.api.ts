@@ -2,20 +2,12 @@ import { Project, Experience } from './timeline.types'
 
 export const experiences: Experience[] = [
     {
-        year: 'June — Aug 2026',
+        year: 'June 2026 — Aug 2026',
         title: 'Software Developer Intern',
         company: 'RBC Minneapolis',
         description: 'Worked on Premium Savings, a product handling over $7.5 billion in assets within an agile workspace.',
         tech: ['Java', 'Backend'],
         icon: '/rbc.svg'
-    },
-    {
-        year: 'Jan 2026 — Present',
-        title: 'Undergraduate Teaching Assistant',
-        company: 'University of Minnesota CSE',
-        description: 'Undergraduate teaching assistant at the University of Minnesota College of Science and Engineering. Lead lab sections, hold office hours, and grade student coursework.',
-        tech: ['Java', 'Git', 'Linux', 'Gradescope'],
-        icon: '/umn-cse.png'
     },
     {
         year: 'Oct 2025 — Present',
@@ -26,7 +18,15 @@ export const experiences: Experience[] = [
         icon: '/umn-logo.svg'
     },
     {
-        year: 'Sept 2022 — Present',
+        year: 'Jan 2025 — Present',
+        title: 'Undergraduate Teaching Assistant',
+        company: 'University of Minnesota CSE',
+        description: 'Undergraduate teaching assistant at the University of Minnesota College of Science and Engineering. Lead lab sections, hold office hours, and grade student coursework.',
+        tech: ['Java', 'Git', 'Linux', 'Gradescope'],
+        icon: '/umn-cse.png'
+    },
+    {
+        year: 'Sept 2022 — Sept 2025',
         title: 'Fullstack Developer & System Administrator',
         company: 'Freelance Work',
         description: 'Deployed script-sharing marketplace scaling to 1,000+ users with 99.9% uptime. Implemented automatic payout systems through crypto and PayPal. Designed responsive mortgage application forms improving completion rates by 35% over previous solutions.',
