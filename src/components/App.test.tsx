@@ -15,15 +15,6 @@ describe("<App />", () => {
         )
     })
 
-    it("links to the resume in a new tab", () => {
-        render(<App />)
-        const resume = screen.getByRole("link", { name: "resume" })
-
-        expect(resume).toHaveAttribute("href", "/resume.pdf")
-        expect(resume).toHaveAttribute("target", "_blank")
-        expect(resume).toHaveAttribute("rel", "noopener noreferrer")
-    })
-
     it.each([
         ["GitHub", "https://github.com/ajkneisl"],
         ["LinkedIn", "https://linkedin.com/in/ajkn"]

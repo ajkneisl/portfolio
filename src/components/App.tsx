@@ -23,15 +23,6 @@ export default function App() {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <a
-                                href="/resume.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm font-medium text-neutral-700 hover:text-neutral-900 underline underline-offset-2 transition-colors"
-                            >
-                                resume
-                            </a>
-                            <span className="text-neutral-300">|</span>
                             <a target="_blank" href="https://github.com/ajkneisl" className="hover:opacity-70 transition-opacity">
                                 <img className="h-5" src="github.svg" alt="GitHub" />
                             </a>

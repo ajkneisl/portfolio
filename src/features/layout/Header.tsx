@@ -4,13 +4,6 @@ export default function Header() {
             <a className="text-xl font-semibold noto-sans" href="/public">AJ Kneisl</a>
         </div>
 
-        {/* Projects */}
-        <div>
-            <ul className="menu menu-horizontal px-1">
-                <li><a href="/resume.pdf" target="_blank">resume</a></li>
-            </ul>
-        </div>
-
         {/* Social Media */}
         <div className="flex flex-row items-center gap-2">
             <div>
