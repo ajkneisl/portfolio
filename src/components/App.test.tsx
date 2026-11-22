@@ -1,8 +1,17 @@
 import { fireEvent, render, screen, within } from "@testing-library/react"
 import { MemoryRouter } from "react-router"
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import { Site } from "./App"
-import { projects } from "../features/timeline/timeline.api"
+import { projects, projectSlug } from "../features/timeline/timeline.api"
+
+/** Pretend only Burrow has a Markdown write-up. */
+const WRITTEN = "burrow"
+
+vi.mock("../features/timeline/projectContent", () => ({
+    hasContent: (slug: string) => slug === "burrow",
+    projectContent: (slug: string) =>
+        slug === "burrow" ? "<h2>Write-up heading</h2><p>Write-up body.</p>" : undefined
+}))
 
 const renderAt = (path: string) =>
     render(
@@ -36,9 +45,9 @@ describe("<Site />", () => {
         it("exposes a mailto link", () => {
             renderAt("/")
 
-            expect(screen.getByRole("link", { name: "Email" })).toHaveAttribute(
+            expect(screen.getByRole("link", { name: "aj@knei.sl" })).toHaveAttribute(
                 "href",
-                "mailto:aj@ajkneisl.dev"
+                "mailto:aj@knei.sl"
             )
         })
 
@@ -75,7 +84,9 @@ describe("<Site />", () => {
             renderAt("/projects")
 
             projects.forEach((proj) => {
-                const links = within(rowFor(proj.title)).queryAllByRole("link")
+                const links = within(rowFor(proj.title))
+                    .queryAllByRole("link")
+                    .filter((l) => l.getAttribute("target") === "_blank")
 
                 expect(links.map((l) => l.getAttribute("href"))).toEqual(
                     [proj.link, proj.appStoreLink, proj.githubLink].filter(Boolean)
@@ -86,6 +97,97 @@ describe("<Site />", () => {
                 })
             })
         })
+    })
+
+    describe("project page", () => {
+        const written = projects.find((proj) => projectSlug(proj) === WRITTEN)!
+        const unwritten = projects.filter((proj) => projectSlug(proj) !== WRITTEN)
+
+        it("is linked from the list only for projects with a write-up", () => {
+            renderAt("/projects")
+
+            expect(screen.getByRole("link", { name: written.title })).toHaveAttribute(
+                "href",
+                `/projects/${WRITTEN}`
+            )
+            unwritten.forEach((proj) =>
+                expect(screen.queryByRole("link", { name: proj.title })).toBeNull()
+            )
+        })
+
+        it("opens from the list", () => {
+            renderAt("/projects")
+
+            fireEvent.click(screen.getByRole("link", { name: written.title }))
+
+            expect(
+                screen.getByRole("heading", { level: 1, name: written.title })
+            ).toBeInTheDocument()
+            expect(screen.getByText("Write-up body.")).toBeInTheDocument()
+        })
+
+        it("shows the project's details and write-up", () => {
+            renderAt(`/projects/${WRITTEN}`)
+
+            expect(
+                screen.getByRole("heading", { level: 1, name: written.title })
+            ).toBeInTheDocument()
+            expect(screen.getByText(written.year)).toBeInTheDocument()
+            expect(screen.getByText(written.subtitle)).toBeInTheDocument()
+            expect(screen.getByText(written.tech.join(", "))).toBeInTheDocument()
+            expect(
+                screen.getByRole("heading", { name: "Write-up heading" })
+            ).toBeInTheDocument()
+
+            const hrefs = screen
+                .queryAllByRole("link")
+                .filter((l) => l.getAttribute("target") === "_blank")
+                .map((l) => l.getAttribute("href"))
+            expect(hrefs).toEqual(
+                [written.link, written.appStoreLink, written.githubLink].filter(Boolean)
+            )
+        })
+
+        it("has no page for a project without a write-up", () => {
+            renderAt(`/projects/${projectSlug(unwritten[0])}`)
+
+            expect(
+                screen.getByRole("heading", { name: "Project not found" })
+            ).toBeInTheDocument()
+        })
+
+        it("keeps Projects highlighted in the nav", () => {
+            renderAt(`/projects/${WRITTEN}`)
+
+            expect(
+                within(screen.getByRole("navigation")).getByRole("link", {
+                    name: "Projects"
+                })
+            ).toHaveClass("active")
+        })
+
+        it("says so for an unknown project, with a way back", () => {
+            renderAt("/projects/does-not-exist")
+
+            expect(
+                screen.getByRole("heading", { name: "Project not found" })
+            ).toBeInTheDocument()
+            expect(screen.getByRole("link", { name: "← Projects" })).toHaveAttribute(
+                "href",
+                "/projects"
+            )
+        })
+    })
+
+    it("moves between pages from the nav without breaking", () => {
+        renderAt("/")
+        const nav = () => within(screen.getByRole("navigation"))
+
+        fireEvent.click(nav().getByRole("link", { name: "Projects" }))
+        expect(screen.getByRole("heading", { level: 1, name: "Projects" })).toBeInTheDocument()
+
+        fireEvent.click(nav().getByRole("link", { name: "Home" }))
+        expect(screen.getByRole("link", { name: "aj@knei.sl" })).toBeInTheDocument()
     })
 
     it("marks the current page in the nav", () => {
@@ -99,7 +201,7 @@ describe("<Site />", () => {
     it("falls back to home for unknown paths", () => {
         renderAt("/nope")
 
-        expect(screen.getByRole("link", { name: "Email" })).toBeInTheDocument()
+        expect(screen.getByRole("link", { name: "aj@knei.sl" })).toBeInTheDocument()
     })
 
     it("renders the footer", () => {

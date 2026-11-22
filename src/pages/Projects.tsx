@@ -1,4 +1,6 @@
-import { projects } from '../features/timeline/timeline.api'
+import { Link } from 'react-router'
+import { projects, projectSlug } from '../features/timeline/timeline.api'
+import { hasContent } from '../features/timeline/projectContent'
 
 const external = { target: '_blank', rel: 'noopener noreferrer' }
 
@@ -11,7 +13,13 @@ export default function Projects() {
                     <li key={proj.title} className="row">
                         <time className="row-date">{proj.year}</time>
                         <div>
-                            <h2 className="row-name">{proj.title}</h2>
+                            <h2 className="row-name">
+                                {hasContent(projectSlug(proj)) ? (
+                                    <Link to={`/projects/${projectSlug(proj)}`}>{proj.title}</Link>
+                                ) : (
+                                    proj.title
+                                )}
+                            </h2>
                             <p className="row-desc">{proj.subtitle}</p>
                         </div>
                         <div className="row-links">

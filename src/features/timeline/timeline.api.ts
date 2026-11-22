@@ -41,7 +41,8 @@ export const projects: Project[] = [
         subtitle: 'Tracks your goals automatically from the apps you already use, then puts you up against your friends.',
         tech: ['iOS'],
         link: 'https://beacc.app',
-        appStoreLink: 'https://apps.apple.com/us/app/beacc/id6825988118'
+        appStoreLink: 'https://apps.apple.com/us/app/beacc/id6825988118',
+        githubLink: 'https://github.com/ajkneisl/beacc'
     },
     {
         year: '2025 — 2026',
@@ -123,3 +124,14 @@ export const projects: Project[] = [
         githubLink: 'https://github.com/ajkneisl/spotkey'
     }
 ]
+
+/** URL-safe identifier for a project, derived from its title (e.g. "Social Coding" -> "social-coding"). */
+export const projectSlug = (project: Project): string =>
+    project.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+
+/** Looks up a project by its slug. */
+export const findProject = (slug: string | undefined): Project | undefined =>
+    projects.find((project) => projectSlug(project) === slug)

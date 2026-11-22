@@ -8,6 +8,7 @@
  * @param icon An icon for the project.
  * @param githubLink The link to the GitHub.
  * @param link The link to the project.
+ * @param appStoreLink The link to the App Store listing.
  */
 export type Project = {
     year: string,

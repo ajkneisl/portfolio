@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
-import { experiences, projects } from "./timeline.api"
+import { experiences, findProject, projects, projectSlug } from "./timeline.api"
 import { Experience, Project } from "./timeline.types"
 
 const PUBLIC_DIR = path.resolve(process.cwd(), "public")
@@ -55,6 +55,21 @@ describe("timeline data", () => {
     it("uses a unique title for every project", () => {
         const titles = projects.map((proj) => proj.title)
         expect(new Set(titles).size).toBe(titles.length)
+    })
+
+    it("gives every project a unique, URL-safe slug", () => {
+        const slugs = projects.map(projectSlug)
+
+        expect(new Set(slugs).size).toBe(slugs.length)
+        slugs.forEach((slug) => expect(slug).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/))
+    })
+
+    it("finds each project by its slug, and nothing for an unknown one", () => {
+        projects.forEach((proj) =>
+            expect(findProject(projectSlug(proj))).toBe(proj)
+        )
+        expect(findProject("does-not-exist")).toBeUndefined()
+        expect(findProject(undefined)).toBeUndefined()
     })
 
     it("points every icon at a file that exists in public/", () => {

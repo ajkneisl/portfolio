@@ -18,7 +18,7 @@ export default function Home() {
             </p>
 
             <ul className="contact">
-                <li><a href="mailto:aj@ajkneisl.dev">Email</a></li>
+                <li><a href="mailto:aj@knei.sl"><strong>aj@knei.sl</strong></a></li>
                 <li><a href="https://github.com/ajkneisl" {...external}>GitHub ↗</a></li>
                 <li><a href="https://linkedin.com/in/ajkn" {...external}>LinkedIn ↗</a></li>
             </ul>
