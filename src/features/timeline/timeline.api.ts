@@ -36,7 +36,15 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
     {
-        year: '2025 — Present',
+        year: '2026',
+        title: 'Beacc',
+        subtitle: 'Tracks your goals automatically from the apps you already use, then puts you up against your friends.',
+        tech: ['iOS'],
+        link: 'https://beacc.app',
+        appStoreLink: 'https://apps.apple.com/us/app/beacc/id6825988118'
+    },
+    {
+        year: '2025 — 2026',
         title: 'Burrow',
         subtitle: 'A study-group finding app built for the University of Minnesota.',
         tech: ['Typescript/React', 'React Native', 'Kotlin/Ktor', 'PostgreSQL'],
@@ -44,6 +52,14 @@ export const projects: Project[] = [
         icon: '/projects/burrow.webp',
         link: 'https://umn.app',
         appStoreLink: 'https://apps.apple.com/us/app/burrow-at-umn/id6757548307'
+    },
+    {
+        year: '2026',
+        title: 'Social Coding',
+        subtitle: 'Website for Social Coding @ UMN.',
+        tech: ['React'],
+        link: 'https://socialcoding.net',
+        githubLink: 'https://github.com/ajkneisl/socialcoding'
     },
     {
         year: '2026',
@@ -67,7 +83,6 @@ export const projects: Project[] = [
         subtitle: 'A simple & customizable utility to get the next MetroTransit train or bus at a stop.',
         tech: ['Go'],
         githubLink: 'https://github.com/ajkneisl/nextmetro',
-        link: 'https://ajkn.dev/metro'
     },
     {
         year: '2024 — 2025',
@@ -75,7 +90,6 @@ export const projects: Project[] = [
         subtitle: 'A customizable photo-board, leveraging photo compression to create a smooth experience.',
         tech: ['React', 'Kotlin'],
         githubLink: 'https://github.com/ajkneisl/bulletin',
-        link: 'https://ajkneisl.photos',
         icon: '/projects/bulletin.svg'
     },
     {
