@@ -30,8 +30,10 @@ jobs:
                     username: ${{ secrets.SERVER_USER }}
                     key: ${{ secrets.SERVER_SSH_KEY }}
                     script: |
+                        set -eu
                         cd /opt/docker/portfolio/portfolio
-                        git pull origin main
+                        git pull --ff-only origin main
+                        git log -1 --oneline
                         docker build -t portfolio:1.0.0 .
                         docker stop portfolio || true
                         docker rm portfolio || true
