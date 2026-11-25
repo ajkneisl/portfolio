@@ -27,7 +27,6 @@ export type Project = {
  * @param year The year(s) of employment.
  * @param title The job title.
  * @param company The company name.
- * @param description Brief description of the role.
  * @param tech Technologies used in this role.
  * @param icon An icon for the company.
  * @param link Link to the company website.
@@ -36,7 +35,6 @@ export type Experience = {
     year: string,
     title: string,
     company: string,
-    description: string,
     tech: string[],
     icon?: string,
     link?: string

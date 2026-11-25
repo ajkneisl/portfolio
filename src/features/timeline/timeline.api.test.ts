@@ -1,7 +1,16 @@
 import { existsSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
-import { experiences, findProject, projects, projectSlug } from "./timeline.api"
+import {
+    experiences,
+    experienceSlug,
+    findExperience,
+    findProject,
+    projects,
+    projectsByYear,
+    projectSlug,
+    projectYear
+} from "./timeline.api"
 import { Experience, Project } from "./timeline.types"
 
 const PUBLIC_DIR = path.resolve(process.cwd(), "public")
@@ -26,7 +35,6 @@ describe("timeline data", () => {
                 expect(exp.year.trim()).not.toBe("")
                 expect(exp.title.trim()).not.toBe("")
                 expect(exp.company.trim()).not.toBe("")
-                expect(exp.description.trim()).not.toBe("")
             })
 
             it("lists at least one technology, none of them blank", () => {
@@ -55,6 +63,44 @@ describe("timeline data", () => {
     it("uses a unique title for every project", () => {
         const titles = projects.map((proj) => proj.title)
         expect(new Set(titles).size).toBe(titles.length)
+    })
+
+    it("gives every role a unique, URL-safe slug that finds it again", () => {
+        const slugs = experiences.map(experienceSlug)
+
+        expect(new Set(slugs).size).toBe(slugs.length)
+        slugs.forEach((slug) => expect(slug).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/))
+        experiences.forEach((exp) =>
+            expect(findExperience(experienceSlug(exp))).toBe(exp)
+        )
+        expect(findExperience("does-not-exist")).toBeUndefined()
+    })
+
+    it.each([
+        ["2026", 2026],
+        ["2025 — 2026", 2026],
+        ["2020 — 2022", 2022],
+        ["2019", 2019]
+    ])("files a project dated %s under %i", (year, expected) => {
+        expect(projectYear({ ...projects[0], year })).toBe(expected)
+    })
+
+    it("files ongoing projects under the current year", () => {
+        expect(
+            projectYear({ ...projects[0], year: "2024 — Present" }, new Date("2031-03-01"))
+        ).toBe(2031)
+    })
+
+    it("groups every project exactly once, newest year first, keeping list order", () => {
+        const groups = projectsByYear()
+
+        expect(groups.flatMap((g) => g.projects)).toHaveLength(projects.length)
+        expect(groups.map((g) => g.year)).toEqual(
+            [...groups.map((g) => g.year)].sort((a, b) => b - a)
+        )
+        groups.forEach((g) =>
+            expect(g.projects).toEqual(projects.filter((p) => projectYear(p) === g.year))
+        )
     })
 
     it("gives every project a unique, URL-safe slug", () => {

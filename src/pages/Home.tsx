@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import PhotoGallery from '../features/photos/PhotoGallery'
 
 const external = { target: '_blank', rel: 'noopener noreferrer' }
 
@@ -22,6 +23,8 @@ export default function Home() {
                 <li><a href="https://github.com/ajkneisl" {...external}>GitHub ↗</a></li>
                 <li><a href="https://linkedin.com/in/ajkn" {...external}>LinkedIn ↗</a></li>
             </ul>
+
+            <PhotoGallery />
         </section>
     )
 }

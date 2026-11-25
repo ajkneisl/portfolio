@@ -6,9 +6,12 @@ const ROOT = process.cwd()
 const SRC_DIR = path.join(ROOT, "src")
 const PUBLIC_DIR = path.join(ROOT, "public")
 
-/** Every src=""/href="" literal in the source that names a file rather than a route or URL. */
+/**
+ * Every src=""/href="" attribute or icon: "" data field in the source that names a file
+ * rather than a route or URL.
+ */
 const ASSET_REF =
-    /(?:src|href)=["'](?!https?:|mailto:|data:|#)([^"']+\.[a-z0-9]{2,4})["']/gi
+    /(?:(?:src|href)=|icon:\s*)["'](?!https?:|mailto:|data:|#)([^"']+\.[a-z0-9]{2,4})["']/gi
 
 function sourceFiles(dir: string): string[] {
     return readdirSync(dir).flatMap((entry) => {

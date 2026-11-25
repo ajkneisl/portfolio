@@ -4,6 +4,8 @@ import Footer from '../features/layout/Footer'
 import Home from '../pages/Home'
 import Projects from '../pages/Projects'
 import ProjectPage from '../pages/ProjectPage'
+import Experience from '../pages/Experience'
+import ExperiencePage from '../pages/ExperiencePage'
 
 /** Start each page at the top, like a normal page load. */
 function ScrollToTop() {
@@ -23,6 +25,7 @@ export function Site() {
                 <nav>
                     <NavLink to="/" end>Home</NavLink>
                     <NavLink to="/projects">Projects</NavLink>
+                    <NavLink to="/experience">Experience</NavLink>
                 </nav>
             </header>
 
@@ -31,6 +34,8 @@ export function Site() {
                     <Route path="/" element={<Home />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/projects/:slug" element={<ProjectPage />} />
+                    <Route path="/experience" element={<Experience />} />
+                    <Route path="/experience/:slug" element={<ExperiencePage />} />
                     <Route path="*" element={<Home />} />
                 </Routes>
             </main>

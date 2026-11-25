@@ -4,32 +4,31 @@ export const experiences: Experience[] = [
     {
         year: 'June 2026 — Aug 2026',
         title: 'Software Developer Intern',
-        company: 'RBC Minneapolis',
-        description: 'Worked on Premium Savings, a product handling over $7.5 billion in assets within an agile workspace.',
+        company: 'RBC Wealth Management',
         tech: ['Java', 'Backend'],
-        icon: '/rbc.svg'
+        icon: '/rbc.svg',
+        link: 'https://www.rbcwealthmanagement.com/en-us/'
     },
     {
         year: 'Oct 2025 — Present',
-        title: 'Student Lead',
-        company: 'University of Minnesota OIT',
-        description: 'Oversee student workers at the help desk, scheduling shifts, training new hires, and serving as an escalation point for complex tickets while maintaining day-to-day support coverage.',
+        title: 'IT Lead',
+        company: 'UMN Office of Information Technology',
         tech: ['Windows', 'macOS', 'Linux', 'Active Directory', 'TDX'],
-        icon: '/umn-logo.svg'
+        icon: '/umn-logo.svg',
+        link: 'https://it.umn.edu'
     },
     {
         year: 'Jan 2025 — Present',
-        title: 'Undergraduate Teaching Assistant',
-        company: 'University of Minnesota CSE',
-        description: 'Undergraduate teaching assistant at the University of Minnesota College of Science and Engineering. Lead lab sections, hold office hours, and grade student coursework.',
+        title: 'Teaching Assistant',
+        company: 'UMN College of Science and Engineering',
         tech: ['Java', 'Git', 'Linux', 'Gradescope'],
-        icon: '/umn-cse.png'
+        icon: '/umn-logo.svg',
+        link: 'https://cse.umn.edu'
     },
     {
-        year: 'Sept 2022 — Sept 2025',
-        title: 'Fullstack Developer & System Administrator',
-        company: 'Freelance Work',
-        description: 'Deployed script-sharing marketplace scaling to 1,000+ users with 99.9% uptime. Implemented automatic payout systems through crypto and PayPal. Designed responsive mortgage application forms improving completion rates by 35% over previous solutions.',
+        year: '2022 — 2025',
+        title: 'Freelance Developer',
+        company: 'Self-employed',
         tech: ['React', 'Jetty', 'Linux', 'System Administration', 'Docker', 'AWS']
     }
 ]
@@ -38,11 +37,12 @@ export const projects: Project[] = [
     {
         year: '2026',
         title: 'Beacc',
-        subtitle: 'Tracks your goals automatically from the apps you already use, then puts you up against your friends.',
+        subtitle: 'Tracks your goals automatically, then puts you up against your friends.',
         tech: ['iOS'],
         link: 'https://beacc.app',
         appStoreLink: 'https://apps.apple.com/us/app/beacc/id6825988118',
-        githubLink: 'https://github.com/ajkneisl/beacc'
+        githubLink: 'https://github.com/ajkneisl/beacc',
+        icon: '/projects/beacc.svg'
     },
     {
         year: '2025 — 2026',
@@ -60,7 +60,8 @@ export const projects: Project[] = [
         subtitle: 'Website for Social Coding @ UMN.',
         tech: ['React'],
         link: 'https://socialcoding.net',
-        githubLink: 'https://github.com/ajkneisl/socialcoding'
+        githubLink: 'https://github.com/ajkneisl/socialcoding',
+        icon: '/projects/social-coding.svg'
     },
     {
         year: '2026',
@@ -73,22 +74,15 @@ export const projects: Project[] = [
 
         year: '2025',
         title: 'Echoes',
-        subtitle: 'Share your voices and become interconnected within your community. Top 5 Hackathon entry.',
+        subtitle: 'Share your voices with your community. Top 5 Hackathon entry.',
         tech: ['Typescript/React Native', 'Kotlin/Ktor', 'PostgreSQL'],
         githubLink: 'https://github.com/ajkneisl/echoes',
         icon: '/projects/echoes.webp'
     },
     {
-        year: '2025',
-        title: 'nextMETRO',
-        subtitle: 'A simple & customizable utility to get the next MetroTransit train or bus at a stop.',
-        tech: ['Go'],
-        githubLink: 'https://github.com/ajkneisl/nextmetro',
-    },
-    {
         year: '2024 — 2025',
         title: 'Bulletin',
-        subtitle: 'A customizable photo-board, leveraging photo compression to create a smooth experience.',
+        subtitle: 'A customizable photo-board.',
         tech: ['React', 'Kotlin'],
         githubLink: 'https://github.com/ajkneisl/bulletin',
         icon: '/projects/bulletin.svg'
@@ -103,10 +97,11 @@ export const projects: Project[] = [
     },
     {
         year: '2022',
-        title: 'printPI',
-        subtitle: 'A remote receipt printer software, allowing for secure & remote printing anywhere.',
+        title: 'PrintPI',
+        subtitle: 'A receipt printer controlled by a Raspberry Pi.',
         tech: ['Java / Kotlin', 'MongoDB'],
-        githubLink: 'https://github.com/ajkneisl/printer-service'
+        githubLink: 'https://github.com/ajkneisl/printer-service',
+        icon: '/projects/printpi.svg'
     },
     {
         year: '2020 — 2022',
@@ -121,7 +116,8 @@ export const projects: Project[] = [
         title: 'SpotKey',
         subtitle: 'A computer-wide Spotify hot-key manager, back when they didn\'t work as well.',
         tech: ['Java', 'JavaFX'],
-        githubLink: 'https://github.com/ajkneisl/spotkey'
+        githubLink: 'https://github.com/ajkneisl/spotkey',
+        icon: '/projects/spotkey.svg'
     }
 ]
 
@@ -135,3 +131,36 @@ export const projectSlug = (project: Project): string =>
 /** Looks up a project by its slug. */
 export const findProject = (slug: string | undefined): Project | undefined =>
     projects.find((project) => projectSlug(project) === slug)
+
+/** URL-safe identifier for a role, derived from its title (e.g. "IT Lead" -> "it-lead"). */
+export const experienceSlug = (experience: Experience): string =>
+    experience.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+
+/** Looks up a role by its slug. */
+export const findExperience = (slug: string | undefined): Experience | undefined =>
+    experiences.find((experience) => experienceSlug(experience) === slug)
+
+/**
+ * The year a project is filed under: the last year it was active.
+ * "2025 — 2026" → 2026, "2019" → 2019, "Present" counts as the current year.
+ */
+export const projectYear = (project: Project, now = new Date()): number => {
+    if (/present/i.test(project.year)) return now.getFullYear()
+    const years = project.year.match(/\d{4}/g)?.map(Number) ?? []
+    return years.length ? Math.max(...years) : now.getFullYear()
+}
+
+/** Projects grouped by projectYear, newest year first, keeping each group's original order. */
+export const projectsByYear = (list: Project[] = projects): { year: number; projects: Project[] }[] => {
+    const groups = new Map<number, Project[]>()
+    list.forEach((project) => {
+        const year = projectYear(project)
+        groups.set(year, [...(groups.get(year) ?? []), project])
+    })
+    return [...groups.entries()]
+        .sort(([a], [b]) => b - a)
+        .map(([year, projects]) => ({ year, projects }))
+}

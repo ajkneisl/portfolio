@@ -1,1 +1,11 @@
 node_modules
+dist
+coverage
+.git
+.github
+.idea
+.claude
+.DS_Store
+*.local
+.env*
+Personal.yml

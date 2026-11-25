@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest"
-import { contentSlugs, hasContent, projectContent, renderMarkdown } from "./projectContent"
-import { projects, projectSlug } from "./timeline.api"
+import {
+    contentSlugs,
+    experienceContent,
+    experienceContentSlugs,
+    hasContent,
+    hasExperienceContent,
+    projectContent,
+    renderMarkdown
+} from "./projectContent"
+import { experiences, experienceSlug, projects, projectSlug } from "./timeline.api"
 
 describe("project content", () => {
     it("names every Markdown file after an existing project", () => {
@@ -22,6 +30,19 @@ describe("project content", () => {
         projects.map(projectSlug).forEach((slug) =>
             expect(hasContent(slug)).toBe(projectContent(slug) !== undefined)
         )
+    })
+
+    it("names every experience Markdown file after an existing role", () => {
+        const slugs = new Set(experiences.map(experienceSlug))
+
+        expect(experienceContentSlugs.filter((slug) => !slugs.has(slug))).toEqual([])
+    })
+
+    it("agrees on which roles have a write-up", () => {
+        experiences.map(experienceSlug).forEach((slug) =>
+            expect(hasExperienceContent(slug)).toBe(experienceContent(slug) !== undefined)
+        )
+        expect(hasExperienceContent("does-not-exist")).toBe(false)
     })
 
     it("renders Markdown to HTML", () => {
